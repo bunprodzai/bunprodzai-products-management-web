@@ -1,0 +1,69 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block main
+  if(role.permissions.includes("users_view"))
+    +alert-success(messages)
+    +alert-error(messages)
+    .card
+      .card-header
+        h1 Danh sách tài khoản khách hàng
+      .card-body
+        .row
+          .col-8
+          table(class="table table-hover table-sm")
+            thead.thead-dark
+              tr 
+                th Tên
+                th Hình ảnh
+                th Email
+                th Phone
+                th Trạng thái
+                th Hành động
+            tbody
+              each item, index in records
+                tr 
+                  td #{item.fullName}
+                  td 
+                    img(src=item.avatar, alt=item.title width="100px", height=auto)
+                  td #{item.email}
+                  td #{item.phone}
+                  td
+                    if(role.permissions.includes("users_edit"))
+                      if(item.status == "active")
+                        a(href="javascript:;"
+                          data-status="active"
+                          data-id=item._id
+                          button-change-status-user
+                          class="badge badge-success"
+                          ) Hoạt động
+                      else
+                        a(href="javascript:;"
+                          data-status="inactive"
+                          data-id=item._id
+                          button-change-status-user
+                          class="badge badge-danger ") Tắt hoạt động
+                    else 
+                      if(item.status == "active")
+                        a(href="javascript:;"
+                          data-status="active"
+                          class="badge badge-success"
+                          ) Hoạt động
+                      else
+                        a(href="javascript:;"
+                          data-status="inactive"
+                          class="badge badge-danger ") Tắt hoạt động
+                  td
+                    if(role.permissions.includes("users_create"))
+                      a(href=`${prefixAdmin}/users/edit/${item._id}`
+                        class="btn btn-success"
+                        data-id=item._id 
+                        button-edit
+                      ) Sửa
+                    a(href=`${prefixAdmin}/users/detail/${item._id}`
+                      class="btn btn-success"
+                      data-id=item._id 
+                    ) Chi tiết
+                    if(role.permissions.includes("users_del"))
+                      button(class="btn btn-warning" data-id=item._id button-delete) Xóa
+    
+    script(src="/admin/js/users.js")

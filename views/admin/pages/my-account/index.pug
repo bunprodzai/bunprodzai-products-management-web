@@ -1,0 +1,16 @@
+extends ../../layouts/default.pug
+block main  
+  div(class="ml-5 mt-5")
+    h2 Thông tin cá nhân 
+    img(src=myAccount.avatar, alt="avatar", style="width: 100px; height: 100px; object-fit: cover;")
+    h5(class="mb-2") Xin chào 
+      i 
+        b #{myAccount.fullName}
+    h5(class="mb-2") Email: #{myAccount.email}
+    h5(class="mb-2") Phone: #{myAccount.phone}
+    if(myAccount.status == "active")
+      h5 Trạng thái: Hoạt động
+    else 
+      h5(class="mb-2") Trạng thái: Ngừng hoạt động
+    h5(class="mb-2") Phân quyền: #{myAccount.titleRole}
+    a(href=`${prefixAdmin}/my-account/edit` class="btn btn-primary") Chỉnh sửa

@@ -1,0 +1,102 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+block main
+  h1.mb-4 #{pageTitle}
+  +alert-error(messages)
+  +alert-success(messages)
+  div(class="form-create-item")
+    form(
+      action=`${prefixAdmin}/settings/general?_method=PATCH`
+      id="form-create-product"
+      method="POST"
+      enctype="multipart/form-data"
+    )
+      div(class="form-group")
+        label(for="websiteName") Tên website
+        input(
+          type="text"
+          class="form-control"
+          id="websiteName"
+          name="websiteName"
+          value=setting.websiteName
+          required
+        )
+      div(class="form-group" upload-img)  
+        label(for="logo") Logo
+        div(class="upload-img")
+          input(
+            type="file"
+            class="form-control-file"
+            id="logo"
+            name="logo"
+            accept="image-*"
+            upload-img-input
+            )
+          button(class="btn btn-light" delete-img) Hủy ảnh
+        img(src=setting.logo alt="" upload-img-preview class="img-preview")
+      div(class="form-group")
+        label(for="email") Email
+        input(
+          type="text"
+          class="form-control"
+          id="email"
+          name="email"
+          value=setting.email
+          required
+        )
+      div(class="form-group")
+        label(for="phone") Phone
+        input(
+          type="text"
+          class="form-control"
+          id="phone"
+          name="phone"
+          value=setting.phone
+          required
+        )
+      div(class="form-group")
+        label(for="address") Address
+        input(
+          type="text"
+          class="form-control"
+          id="address"
+          name="address"
+          value=setting.address
+          required
+        )
+      div(class="form-group")
+        label(for="facebook") Facebook
+        input(
+          type="text"
+          class="form-control"
+          id="facebook"
+          name="facebook"
+          value=setting.facebook
+          required
+        )
+      div(class="form-group")
+        label(for="instagram") Instagram
+        input(
+          type="text"
+          class="form-control"
+          id="instagram"
+          name="instagram"
+          value=setting.instagram
+          required
+        )
+      div(class="form-group")
+        label(for="copyright") Copyright
+        input(
+          type="text"
+          class="form-control"
+          id="copyright"
+          name="copyright"
+          value=setting.copyright
+          required
+        )
+      div(class="form-group")
+        button(
+          type="submit"
+          class="btn btn-success"
+        ) Cập nhật

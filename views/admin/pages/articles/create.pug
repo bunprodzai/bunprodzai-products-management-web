@@ -1,0 +1,97 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+block main
+  //- if(role.permissions.includes("products_create"))
+  h1.mb-4 #{pageTitle}
+  +alert-error(messages)
+  div(class="form-create-item")
+    form(
+      action=`${prefixAdmin}/articles/create`
+      id="form-create-articles"
+      method="POST"
+      enctype="multipart/form-data"
+      form-create
+    )
+      div(class="form-group")
+        label(for="title") Tiêu đề
+        input(
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          required
+        )
+      div(class="form-group form-check-inline")
+        input(
+          type="radio"
+          class="form-check-input"
+          id="featured1"
+          name="featured"
+          value="1"
+        )
+        label(for="featured1" class="form-check-label") Nỗi bật
+      div(class="form-group form-check-inline")
+        input(
+          type="radio"
+          class="form-check-input"
+          id="featured0"
+          name="featured"
+          value="0"
+        )
+        label(for="featured0" class="form-check-label") Không nỗi bật
+      div(class="form-group")  
+        label(for="desc") Mô tả
+        textarea(
+          class="form-control my-expressjs-tinymce-app"
+          id="desc"
+          name="description"
+          rows="5"
+        )
+      div(class="form-group" upload-img)  
+        label(for="thumbnail") Ảnh mô tả
+        div(class="upload-img")
+          input(
+            type="file"
+            class="form-control-file"
+            id="thumbnail"
+            name="thumbnail"
+            accept="image-*"
+            upload-img-input
+            )
+          button(class="btn btn-light" delete-img) Hủy ảnh
+        img(src="" alt="" upload-img-preview class="img-preview")
+      div(class="form-group")  
+        label(for="position") Vị trí
+        input(
+          type="text"
+          class="form-control"
+          id="position"
+          name="position"
+          placeholder="Tự động tăng"
+          min="1"
+        )
+      div(class="form-group form-check-inline")
+        input(
+          type="radio"
+          class="form-check-input"
+          id="statusActive"
+          name="status"
+          value="active"
+          checked
+        )
+        label(for="statusActive" class="form-check-label") Hoạt động
+      div(class="form-group form-check-inline")
+        input(
+          type="radio"
+          class="form-check-input"
+          id="statusInActive"
+          name="status"
+          value="inactive"
+        )
+        label(for="statusInActive" class="form-check-label") Dừng hoạt động 
+      div(class="form-group")
+        button(
+          type="submit"
+          class="btn btn-success"
+        ) Tạo mới

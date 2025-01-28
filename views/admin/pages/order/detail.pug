@@ -1,0 +1,46 @@
+extends ../../layouts/default.pug
+include ../../mixins/filter-status.pug
+include ../../mixins/search.pug
+include ../../mixins/pagination.pug
+include ../../mixins/form-change-multi.pug
+include ../../mixins/alert.pug
+include ../../mixins/sort.pug
+block main  
+  if(role.permissions.includes("products_view"))
+    +alert-success(messages)
+    +alert-error(messages)
+    .card
+      .card-header
+        h1 Chi tiết đơn hàng
+        .card 
+          .card-header 
+            h4 Thông tin khách hàng 
+          .card-body 
+            p Tên: #{record.userInfo.fullName}
+            p Phone: #{record.userInfo.phone}
+            p Địa chỉ: #{record.userInfo.address}
+            b Ngày tạo: #{moment(record.createdAt).format('DD/MM/YYYY HH:mm:ss')}
+      .card-body
+        table(class="table table-hover table-sm")
+          thead.thead-dark
+            tr 
+              th STT
+              th Tên sản phẩm
+              th Số lượng
+              th Giá cũ
+              th % Giảm giá
+              th Giá mới
+              th Tổng tiền
+          tbody
+            each item, index in record.products
+              tr 
+                td 
+                  p #{index + 1}
+                td #{item.title}
+                td #{item.quantity}
+                td #{item.price}
+                td #{item.discountPercentage}%
+                td #{item.priceNew}
+                td #{item.totalPrice}
+        b Tổng tiền đơn hàng: #{record.totalPriceProducts}
+                

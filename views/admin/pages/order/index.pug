@@ -1,0 +1,52 @@
+extends ../../layouts/default.pug
+include ../../mixins/filter-status.pug
+include ../../mixins/search.pug
+include ../../mixins/pagination.pug
+include ../../mixins/form-change-multi.pug
+include ../../mixins/alert.pug
+include ../../mixins/sort.pug
+block main  
+  if(role.permissions.includes("orders_view"))
+    +alert-success(messages)
+    +alert-error(messages)
+    .card
+      .card-header
+        h1 Danh sách đơn hàng
+      .card-body
+        table(class="table table-hover table-sm")
+          thead.thead-dark
+            tr 
+              th STT
+              th Tên khách hàng
+              th SĐT
+              th Địa chỉ
+              th SL Sản phẩm
+              th Tổng tiền
+              th Ngày tạo
+              th Trạng thái
+              th Hành động
+          tbody
+            each item, index in records
+              tr 
+                td 
+                  p #{index + 1}
+                td #{item.userInfo.fullName}
+                td #{item.userInfo.phone}
+                td #{item.userInfo.address}
+                td #{item.totalQuantity}
+                td #{item.totalOrder}
+                td
+                  i 
+                    b #{moment(item.createdAt).format('DD/MM/YYYY HH:mm:ss')}
+                td #{item.status}
+                td 
+                  a(href=`${prefixAdmin}/orders/detail/${item._id}`
+                    class="btn btn-success"
+                    data-id=item._id 
+                  ) Chi tiết
+        .text-right 
+          h3 
+            b Tổng: #{sales}
+        +pagination(pagination)
+  else 
+    h2 Bạn không có quyền này

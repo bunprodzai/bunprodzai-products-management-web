@@ -1,0 +1,58 @@
+extends ../../layouts/default.pug
+block main  
+  div(class="dashboard" style="margin: 10px; padding: 10px; border: 1px solid #ddd; height: 100vh;")
+    .profile.mb-2
+      .card
+        .card-header
+          h1 Thông tin cá nhân
+        .card-body
+          .avatar 
+            img(src=user.avatar, alt="avatar" style="width: 100px; height: 100px; object-fit: cover;")
+          .fullName 
+            p Họ tên: #{user.fullName}
+          .email 
+            p email: #{user.email}
+          .phone 
+            p Phone: #{user.phone}
+          .role 
+            p Phân quyền: #{role.title}
+    .row 
+      .col-6.mb-2
+        .card
+          .card-header
+            h5 Sản phẩm 
+          .card-body 
+            p Số lượng: <b>#{statictic.product.total}</b>
+            p Hoạt động:  <b>#{statictic.product.active}</b>
+            p Dừng hoạt động: <b>#{statictic.product.inactive}</b>
+      .col-6.mb-2
+        .card
+          .card-header
+            h5 Dạnh mục sản phẩm
+          .card-body 
+            p Số lượng: <b>#{statictic.categoryProduct.total}</b>
+            p Hoạt động:  <b>#{statictic.categoryProduct.active}</b>
+            p Dừng hoạt động: <b>#{statictic.categoryProduct.inactive}</b>
+      .col-6.mb-2
+        .card
+          .card-header
+            h5 Đơn hàng
+          .card-body 
+            p Số lượng: <b>#{statictic.order.total}</b>
+            p Doanh thu:  <b>#{statictic.order.sales}</b>
+      .col-6.mb-2
+        .card
+          .card-header
+            h5 Tài khoản Admin
+          .card-body 
+            p Số lượng: <b>#{statictic.account.total}</b>
+            p Hoạt động:  <b>#{statictic.account.active}</b>
+            p Dừng hoạt động: <b>#{statictic.account.inactive}</b>
+      .col-6.mb-2
+        .card
+          .card-header
+            h5 Tài khoản Client
+          .card-body 
+            p Số lượng: <b>#{statictic.user.total}</b>
+            p Hoạt động:  <b>#{statictic.user.active}</b>
+            p Dừng hoạt động: <b>#{statictic.user.inactive}</b>

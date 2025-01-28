@@ -1,0 +1,102 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+block main 
+  if(role.permissions.includes("articles_edit"))
+    h1.mb-4 #{pageTitle}
+    +alert-error(messages)
+    div(class="form-create-item")
+      form(
+        action=`${prefixAdmin}/articles/edit/${article._id}?_method=PATCH`
+        id="form-edit-article"
+        method="POST"
+        enctype="multipart/form-data"
+        form-edit
+      )
+        div(class="form-group")
+          label(for="title") Tiêu đề
+          input(
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            value=article.title
+            required
+          )
+        div(class="form-group form-check-inline")
+          input(
+            type="radio"
+            class="form-check-input"
+            id="featured1"
+            name="featured"
+            value="1"
+            checked= article.featured === '1'
+          )
+          label(for="featured1" class="form-check-label") Nổi bật
+        div(class="form-group form-check-inline")
+          input(
+            type="radio"
+            class="form-check-input"
+            id="featured0"
+            name="featured"
+            value="0"
+            checked= article.featured === '0'
+          )
+          label(for="featured0" class="form-check-label") Không nổi bật 
+        div(class="form-group")  
+          label(for="desc") Mô tả
+          textarea(
+            class="form-control my-expressjs-tinymce-app"
+            id="desc"
+            name="description"
+            rows="5"
+          ) #{article.description}
+        div(class="form-group" upload-img)  
+          label(for="thumbnail") Ảnh mô tả
+          div(class="upload-img")
+            input(
+              type="file"
+              class="form-control-file"
+              id="thumbnail"
+              name="thumbnail"
+              accept="image-*"
+              upload-img-input
+              )
+            button(class="btn btn-light" delete-img type="button") Hủy ảnh
+          img(src=article.thumbnail alt="" upload-img-preview class="img-preview")
+        div(class="form-group")  
+          label(for="position") Vị trí
+          input(
+            type="text"
+            class="form-control"
+            id="position"
+            name="position"
+            placeholder="Tự động tăng"
+            min="1"
+            value=article.position
+          )
+        div(class="form-group form-check-inline")
+          input(
+            type="radio"
+            class="form-check-input"
+            id="statusActive"
+            name="status"
+            value="active"
+            checked= article.status === 'active'
+          )
+          label(for="statusActive" class="form-check-label") Hoạt động
+        div(class="form-group form-check-inline")
+          input(
+            type="radio"
+            class="form-check-input"
+            id="statusInActive"
+            name="status"
+            value="inactive"
+            checked= article.status === 'inactive'
+          )
+          label(for="statusInActive" class="form-check-label") Dừng hoạt động 
+        div(class="form-group")
+          button(
+            type="submit"
+            class="btn btn-success"
+          ) Chỉnh sửa

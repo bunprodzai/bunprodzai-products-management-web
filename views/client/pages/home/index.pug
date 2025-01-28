@@ -1,0 +1,26 @@
+extends ../../layouts/default.pug
+include ../../mixins/products-layout.pug
+include ../../mixins/articles-layout
+include ../../mixins/alert.pug
+block main  
+  .container
+    .productsFeature
+      h1(class="product_featured") Sản phẩm nổi bật 
+      +product-grid(newFeaturedProducts)
+    .productsNew
+      .title-list-product
+        h1(class="product_new") Sản phẩm mới
+        +product-grid(productsNew)
+    .list-product-category
+      .title-list-product
+        h1(class="product_new") Danh mục 1
+        +product-grid(productsNew)
+      .title-list-product
+        h1(class="product_new") Danh mục 2
+        +product-grid(productsNew)
+      .title-list-product
+        h1(class="product_new") Danh mục 3
+        +product-grid(productsNew)
+    .list-article
+      h1 Bài viết
+      +articles-layout(articles,articleFirst)

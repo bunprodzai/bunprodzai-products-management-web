@@ -1,0 +1,10 @@
+haeder.header 
+  .container-fluid  
+    .row 
+      .col-3 
+        .inner-img 
+          img(src="/admin/images/admin.png", alt="Anh mo ta", srcset="")
+      .col-9
+        div(class="text-right")
+          a(href=`${prefixAdmin}/my-account` class="btn btn-primary btn-sm mr-5") #{user.fullName}
+          a(href=`${prefixAdmin}/auth/logout` class="btn btn-danger btn-sm") Đăng xuất 

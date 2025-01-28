@@ -1,0 +1,74 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block main
+  if(role.permissions.includes("accounts_view"))
+    +alert-success(messages)
+    .card
+      .card-header
+        h1 Danh sách tài khoản
+      .card-body
+        .row
+          .col-8
+          table(class="table table-hover table-sm")
+            thead.thead-dark
+              tr 
+                th Tên
+                th Hình ảnh
+                th Email
+                th Quyền
+                th Trạng thái
+                th Hành động
+            tbody
+              each item, index in records
+                tr 
+                  td #{item.fullName}
+                  td 
+                    img(src=item.avatar, alt=item.fullName width="100px", height=auto)
+                  td #{item.email}
+                  td #{item.role.title}
+                  td
+                    if(role.permissions.includes("accounts_create"))
+                      if(item.status == "active")
+                        a(href="javascript:;"
+                          data-status="active"
+                          data-id=item._id
+                          button-change-status-accounts
+                          class="badge badge-success"
+                          ) Hoạt động
+                      else
+                        a(href="javascript:;"
+                          data-status="inactive"
+                          data-id=item._id
+                          button-change-status-accounts
+                          class="badge badge-danger ") Tắt hoạt động
+                    else 
+                      if(item.status == "active")
+                        a(href="javascript:;"
+                          data-status="active"
+                          data-id=item._id
+                          class="badge badge-success"
+                          ) Hoạt động
+                      else
+                        a(href="javascript:;"
+                          data-status="inactive"
+                          data-id=item._id
+                          class="badge badge-danger ") Tắt hoạt động
+                  td
+                    if(role.permissions.includes("accounts_create"))
+                      a(href=`${prefixAdmin}/accounts/edit/${item._id}`
+                        class="btn btn-success"
+                        data-id=item._id 
+                        button-edit
+                      ) Sửa
+                    a(href=`#`
+                      class="btn btn-success"
+                      data-id=item._id 
+                    ) Chi tiết
+                    if(role.permissions.includes("accounts_del"))
+                      button(class="btn btn-warning" data-id=item._id button-delete) Xóa
+          .col-4
+            if(role.permissions.includes("accounts_create"))
+              a(href=`${prefixAdmin}/accounts/create`
+                class="btn btn-outline-success"
+              ) + Thêm mới
+    script(src="/admin/js/accounts.js")

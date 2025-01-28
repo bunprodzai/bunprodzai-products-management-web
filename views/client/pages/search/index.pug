@@ -1,0 +1,14 @@
+extends ../../layouts/default
+include ../../mixins/products-layout.pug
+block main
+  .products   
+    .container 
+      .row 
+        .col-12 
+          h3 Kết quả tìm kiếm #{keyword}
+      if(records.length > 0)
+        +product-grid(records)
+      else 
+        .row 
+          .col-12 
+            h3.text-center.mt-5 Không tìm thấy sản phẩm #{keyword}

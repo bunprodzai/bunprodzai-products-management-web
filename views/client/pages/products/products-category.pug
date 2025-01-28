@@ -1,0 +1,7 @@
+extends ../../layouts/default
+include ../../mixins/products-layout.pug
+block main
+  .products   
+    .container 
+      h1 Danh sách sản phẩm #{category.title}
+      +product-grid(productsCategory)

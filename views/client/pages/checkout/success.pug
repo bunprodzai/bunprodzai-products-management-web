@@ -1,0 +1,38 @@
+extends ../../layouts/default.pug
+include ../../mixins/products-layout.pug
+include ../../mixins/alert.pug
+block main
+  .container
+    h2 Đặt hàng thành công 
+    .card 
+      .card-header
+        h4 Thông tin cá nhân 
+        .row
+          .col-12
+            div Tên : #{recordOrder.userInfo.fullName}
+            div Phone : #{recordOrder.userInfo.phone}
+            div Address : #{recordOrder.userInfo.address}
+        h4 Chi tiết đơn hàng.
+        .row
+          .col-12 
+            table(class="table table-bordered")
+              thead 
+                tr
+                  th STT 
+                  th Ảnh
+                  th Tên 
+                  th Giá
+                  th Số lượng
+                  th Tổng tiền 
+              tbody
+                if(recordOrder.products.length > 0)
+                  each item, index in recordOrder.products
+                    tr 
+                      td #{index+1}
+                      td 
+                        img(src=item.productInfo.thumbnail, alt="" style="width: 100px; height: auto")
+                      td #{item.productInfo.title}
+                      td #{item.productInfo.priceNew}
+                      td #{item.quantity}
+                      td #{item.totalPrice}
+            h3(class="text-left") Tổng đơn hàng: #{recordOrder.totalPriceProducts}

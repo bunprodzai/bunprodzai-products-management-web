@@ -1,0 +1,49 @@
+footer.footer   
+  .container
+    .footer-mid 
+      .row
+        .col-3
+          .footer-box
+            b.title-footer Liên hệ
+            .address.d-flex
+              i(class="bi bi-geo-alt-fill mr-1")  
+              p #{setting.address}
+            .facebook
+              a(class="d-flex" href=`${setting.facebook}` target="_ blank") 
+                i(class="bi bi-facebook mr-1")  
+                p Facebook
+            .instagram
+              a(class="d-flex" href=`${setting.instagram}` target="_ blank") 
+                i(class="bi bi-instagram mr-1")  
+                p Instagram
+            .phone.d-flex
+              i(class="bi bi-telephone-inbound-fill mr-1")    
+              p 0799435534
+        .col-3
+          .footer-box
+            b.title-footer Cửa hàng
+            .d-flex
+              i(class="bi bi-geo-alt-fill mr-1")  
+              p Nguyễn Văn Linh - Đà Nẵng
+            .d-flex
+              i(class="bi bi-geo-alt-fill mr-1")  
+              p Nguyễn Văn Linh - Đà Nẵng
+        .col-3  
+          .footer-box
+            b.title-footer Về chúng tôi
+            a(class="d-flex" href="/#")
+              p Giới thiệu về công ty 
+            a(class="d-flex" href="/#")
+              p Hệ thống cửa hàng 
+            a(class="d-flex" href="/#")
+              p Tuyển dụng
+        .col-3  
+          .footer-box
+            b.title-footer Chăm sóc khách hàng
+            a(class="d-flex" href="/#")
+              p Chính sách bảo hành
+            a(class="d-flex" href="/#")
+              p Chính sách đổi trả sản phẩm
+  .copyright 
+    | #{setting.copyright}
+  link(rel="stylesheet" href="/css/footer.css")

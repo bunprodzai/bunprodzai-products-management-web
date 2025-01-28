@@ -1,0 +1,16 @@
+.menu 
+  .container 
+    .inner-menu
+      ul  
+        li  
+          a(href="/" class="active") Trang chủ
+        li(class="sub-menu")
+          -const pathProduct = "/products"
+          a(href=pathProduct) Sản phẩm
+          +sub-menu(layoutProductsCategory, pathProduct)
+        li 
+          a(href="#") Giới thiệu
+        li 
+          a(href="#") Bài viết
+        li 
+          a(href="#") Liên hệ

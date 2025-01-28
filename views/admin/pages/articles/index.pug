@@ -1,0 +1,81 @@
+extends ../../layouts/default.pug
+block main  
+  h1 #{pageTitle}
+  .card
+    .card-header 
+      h1 Danh sách bài viết
+    .card-body
+      a(href=`${prefixAdmin}/articles/create`
+        class="btn btn-outline-success" style="margin-bottom: 10px"
+        ) + Thêm mới
+      table(class="table table-hover table-sm" checkbox-multi)
+        thead.thead-dark
+          tr 
+            th STT
+            th Hình ảnh
+            th Tiêu đề
+            th Vị trí
+            th Trạng thái
+            th Người tạo
+            th Người cập nhập
+            th Hành động
+        tbody
+          each item, index in articles
+            tr 
+              td #{index + 1}
+              td 
+                img(src=item.thumbnail, alt=item.title width="100px", height=auto)
+              td #{item.title}
+              td 
+                b #{item.position}
+              td
+                if(role.permissions.includes("articles_edit"))
+                  if(item.status == "active")
+                    a(href="javascript:;"
+                      data-status="active"
+                      data-id=item._id
+                      button-change-status
+                      class="badge badge-success"
+                      ) Hoạt động
+                  else
+                    a(href="javascript:;"
+                      data-status="inactive"
+                      data-id=item._id
+                      button-change-status
+                      class="badge badge-danger ") Tắt hoạt động
+                else 
+                  if(item.status == "active")
+                    a(href="javascript:;"
+                      data-status="active"
+                      data-id=item._id
+                      class="badge badge-success"
+                      ) Hoạt động
+                  else
+                    a(href="javascript:;"
+                      data-status="inactive"
+                      data-id=item._id
+                      class="badge badge-danger ") Tắt hoạt động
+              td 
+                p #{item.fullName}
+                i 
+                  b #{moment(item.createBy.createdAt).format('DD/MM/YYYY HH:mm:ss')}
+              td
+                - const updatedBy = item.updatedBy.slice(-1)[0]; 
+                if(updatedBy)
+                  p #{updatedBy.accountFullName} 
+                  i 
+                    b #{moment(updatedBy.updatedAt).format('DD/MM/YYYY HH:mm:ss')}
+              td 
+                if(role.permissions.includes("articles_edit"))
+                  a(href=`${prefixAdmin}/articles/edit/${item._id}`
+                    class="btn btn-success"
+                    data-id=item._id style="margin-right: 10px"
+                    button-edit
+                  ) Sửa
+                a(href=`${prefixAdmin}/articles/detail/${item._id}`
+                  class="btn btn-success"
+                  data-id=item._id style="margin-right: 10px"
+                ) Chi tiết
+                if(role.permissions.includes("articles_del"))
+                  button(class="btn btn-warning" data-id=item._id button-delete-article) Xóa
+  script(src="/admin/js/articles.js") 

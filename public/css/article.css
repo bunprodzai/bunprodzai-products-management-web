@@ -1,0 +1,100 @@
+
+/* article  */
+.list-article h1{
+  text-align: center;
+}
+
+.list-article .sharing-grid .sharing-item{
+  display: block;
+}
+
+.list-article .sharing-grid .sharing-item .inner-image img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.list-article .sharing-grid .sharing-item .inner-content .inner-title a {
+  color: #777777;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  font-size: 20px;
+}
+.list-article .sharing-grid .sharing-item .inner-content .inner-title a:hover {
+  color: #DB8E2E;
+}
+
+.list-article .sharing-grid .sharing-item .inner-content .inner-desc {
+  font-size: 14px;
+  font-weight: normal;
+  display: -webkit-box;         /* Cần thiết để sử dụng -webkit-line-clamp */
+  display: box;                 /* Dùng cho các trình duyệt cũ (không phổ biến) */
+  -webkit-box-orient: vertical; /* Cần thiết để thiết lập hướng nội dung */
+  box-orient: vertical;         /* Tương tự cho các trình duyệt cũ */
+  overflow: hidden;             /* Ẩn nội dung vượt quá */
+  text-overflow: ellipsis;      /* Thêm dấu "..." */
+  -webkit-line-clamp: 2;        /* Hiển thị tối đa 3 dòng */
+  line-clamp: 3;                /* Chuẩn hóa cho tương lai */
+}
+
+
+.list-article {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.list-article .sharing-small {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.list-article .sharing-small .article.sharing-item {
+  display: flex;
+  gap: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;
+}
+
+.list-article .sharing-small .article.sharing-item:last-child {
+  border-bottom: none;
+}
+
+.list-article .sharing-small .inner-image {
+  flex-shrink: 0;
+}
+
+.list-article .sharing-small .inner-image img {
+  width: 100px;
+  height: 60px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.list-article .sharing-small .inner-content a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #333;
+}
+
+.list-article .sharing-small .inner-content a:hover {
+  color: #DB8E2E;
+}
+
+.list-article .sharing-small .inner-content .inner-desc {
+  font-size: 14px;
+  font-weight: normal;
+  display: -webkit-box;         /* Cần thiết để sử dụng -webkit-line-clamp */
+  display: box;                 /* Dùng cho các trình duyệt cũ (không phổ biến) */
+  -webkit-box-orient: vertical; /* Cần thiết để thiết lập hướng nội dung */
+  box-orient: vertical;         /* Tương tự cho các trình duyệt cũ */
+  overflow: hidden;             /* Ẩn nội dung vượt quá */
+  text-overflow: ellipsis;      /* Thêm dấu "..." */
+  -webkit-line-clamp: 2;        /* Hiển thị tối đa 3 dòng */
+  line-clamp: 3; 
+}
+
+/* end article  */

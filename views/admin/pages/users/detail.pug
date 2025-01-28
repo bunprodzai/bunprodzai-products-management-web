@@ -1,0 +1,18 @@
+extends ../../layouts/default.pug
+
+block main
+  div(class="ml-5 mt-5")
+    h2 #{pageTitle}
+    img(src=user.avatar, alt="avatar" style="width: 100px; height: 100px; object-fit: cover;")
+    h5(class="mb-2") Xin chào 
+      i 
+        b #{user.fullName}
+    h5(class="mb-2") Email: #{user.email}
+    h5(class="mb-2") Phone: #{user.phone}
+    if(user.status == "active")
+      h5 Trạng thái: Hoạt động
+    else 
+      h5(class="mb-2") Trạng thái: Ngừng hoạt động
+    if(role.permissions.includes("users_edit"))
+      a(href=`${prefixAdmin}/users/edit/${user._id}` class="btn btn-primary") Chỉnh sửa
+      

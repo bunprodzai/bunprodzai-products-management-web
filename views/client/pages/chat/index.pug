@@ -1,0 +1,39 @@
+extends ../../layouts/default.pug
+include ../../mixins/products-layout.pug
+include ../../mixins/alert.pug
+block main  
+  .container
+    .row 
+      .col-12 
+        .chat 
+          //- .inner-head 
+          //-   .inner-avatar EY 
+          //-   .inner-name Emiu 
+          .inner-body
+            each chat in chats
+              div(class=(chat.user_id == user.id) ? "inner-outgoing" : "inner-incoming")
+                if(chat.user_id != user.id)
+                  .inner-name #{chat.infoUser.fullName}
+                .inner-content
+                  | #{chat.content}
+            //- .inner-outgoing
+            //-   .inner-content
+            //-     | The a`? Ok em iu 
+            //- .inner-incoming
+            //-   .inner-name Em iu
+            //-   .inner-content
+            //-     | Nhanh nha nhanh nha 
+            //- .inner-outgoing 
+            //-   .inner-content 
+            //-     | Ck den roi day ma thay ai o nha dau em? Khoa cua ma`
+            //- .inner-incoming
+            //-   .inner-name Em iu
+            //-   .inner-content
+            //-     | Thi em bao khong co ai o nha ma
+          .inner-foot 
+            form(action="/chat" class="innet-form") 
+              input(type="text" placeholder="Nhap noi dung..." name="content")
+              button 
+                i.fa-solid.fa-paper-plane
+
+

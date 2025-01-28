@@ -1,0 +1,28 @@
+mixin articles-layout(articles, articleFirst)
+  .row 
+    .col-md-6 
+      .sharing-grid
+        article.sharing-item
+          .inner-image
+            a(href=articleFirst.slug title=articleFirst.title)
+              img(alt=articleFirst.title src=articleFirst.thumbnail)
+          .inner-content
+            h4.inner-title
+              a(href="/phan-biet-cac-loai-nong-do-nuoc-hoa") #{articleFirst.title}
+            .inner-desc !{articleFirst.description}
+            .inner-date #{moment(articleFirst.createBy.createdAt).format('DD/MM/YYYY')}
+ 
+    .col-md-6
+      each item in articles
+        .sharing-small
+          .article.sharing-item
+            .inner-image
+              a(href=item.slug title=item.title)
+                img(nh-lazy="image" class="img-fluid" alt="NƯỚC HOA NICHE - DESIGNER Là Gì ?" src=item.thumbnail)
+            .inner-content
+              h4.inner-title
+                a(href="/nuoc-hoa-niche-designer-la-gi") 
+                  b !{item.title}
+              .inner-desc !{item.description}
+              .inner-date #{moment(item.createBy.createdAt).format('DD/MM/YYYY')}
+  link(rel="stylesheet", href="/css/article.css")
